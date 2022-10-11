@@ -1731,6 +1731,12 @@
                 </exclusions>
             </dependency>
 
+            <!-- overrides -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-codec-http</artifactId>
+                <version>4.1.82.Final</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
