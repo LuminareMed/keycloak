@@ -352,6 +352,12 @@
                 <groupId>com.github.ua-parser</groupId>
                 <artifactId>uap-java</artifactId>
                 <version>${ua-parser.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.yaml</groupId>
+                        <artifactId>snakeyaml</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.sun.mail</groupId>
@@ -749,6 +755,12 @@
                 <groupId>org.wildfly.core</groupId>
                 <artifactId>wildfly-controller</artifactId>
                 <version>${wildfly.core.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.yaml</groupId>
+                        <artifactId>snakeyaml</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.wildfly.core</groupId>
@@ -882,6 +894,12 @@
                 <groupId>org.wildfly.security</groupId>
                 <artifactId>wildfly-elytron</artifactId>
                 <version>${elytron.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.yaml</groupId>
+                        <artifactId>snakeyaml</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.wildfly.common</groupId>
@@ -1405,6 +1423,12 @@
                 <groupId>com.openshift</groupId>
                 <artifactId>openshift-restclient-java</artifactId>
                 <version>${version.com.openshift.openshift-restclient-java}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.yaml</groupId>
+                        <artifactId>snakeyaml</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -1736,6 +1760,11 @@
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec-http</artifactId>
                 <version>4.1.82.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>1.33</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

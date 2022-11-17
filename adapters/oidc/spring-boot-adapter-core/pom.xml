@@ -70,6 +70,12 @@
       <version>${spring-boot.version}</version>
       <scope>compile</scope>
       <optional>true</optional>
+      <exclusions>
+          <exclusion>
+              <groupId>org.yaml</groupId>
+              <artifactId>snakeyaml</artifactId>
+          </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>io.undertow</groupId>
@@ -110,6 +116,13 @@
         <artifactId>spring-boot-configuration-processor</artifactId>
         <optional>true</optional>
         <version>${spring-boot.version}</version>
+     </dependency>
+
+     <!-- overrides -->
+     <dependency>
+         <groupId>org.yaml</groupId>
+         <artifactId>snakeyaml</artifactId>
+         <version>1.33</version>
      </dependency>
   </dependencies>
 </project>
