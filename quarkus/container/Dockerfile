@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8-minimal AS build-env
+FROM registry.access.redhat.com/ubi8-minimal:latest AS build-env
 
 ENV KEYCLOAK_VERSION 18.0.2
 #ARG KEYCLOAK_DIST=https://github.com/keycloak/keycloak/releases/download/$KEYCLOAK_VERSION/keycloak-$KEYCLOAK_VERSION.tar.gz
@@ -17,7 +17,7 @@ RUN mv /tmp/keycloak/keycloak-* /opt/keycloak && mkdir -p /opt/keycloak/data
 
 RUN chmod -R g+rwX /opt/keycloak
 
-FROM registry.access.redhat.com/ubi8-minimal
+FROM registry.access.redhat.com/ubi8-minimal:latest
 ENV LANG en_US.UTF-8
 
 COPY --from=build-env --chown=1000:0 /opt/keycloak /opt/keycloak
