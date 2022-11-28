@@ -1,9 +1,13 @@
-FROM registry.access.redhat.com/ubi8-minimal AS build-env
+FROM debian:bullseye-slim AS build-env
 
 ENV KEYCLOAK_VERSION 18.0.2
 #ARG KEYCLOAK_DIST=https://github.com/keycloak/keycloak/releases/download/$KEYCLOAK_VERSION/keycloak-$KEYCLOAK_VERSION.tar.gz
 
-RUN microdnf install -y tar gzip
+RUN apt update \
+    && apt install -y tar gzip \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 ADD $KEYCLOAK_DIST /tmp/keycloak/
 
@@ -17,14 +21,18 @@ RUN mv /tmp/keycloak/keycloak-* /opt/keycloak && mkdir -p /opt/keycloak/data
 
 RUN chmod -R g+rwX /opt/keycloak
 
-FROM registry.access.redhat.com/ubi8-minimal
+FROM debian:bullseye-slim
 ENV LANG en_US.UTF-8
 
 COPY --from=build-env --chown=1000:0 /opt/keycloak /opt/keycloak
 
-RUN microdnf update -y && \
-    microdnf install -y --nodocs java-11-openjdk-headless glibc-langpack-en && microdnf clean all && rm -rf /var/cache/yum/* && \
-    echo "keycloak:x:0:root" >> /etc/group && \
+RUN apt update \
+    && apt install -y curl openjdk-11-jdk-headless \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN echo "keycloak:x:0:root" >> /etc/group && \
     echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd
 
 USER 1000
