@@ -87,8 +87,8 @@
         <infinispan.version>12.1.7.Final</infinispan.version>
         <infinispan.protostream.processor.version>4.4.1.Final</infinispan.protostream.processor.version>
         <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
-        <jackson.version>2.13.4</jackson.version>
-        <jackson.databind.version>2.13.4</jackson.databind.version>
+        <jackson.version>2.13.5</jackson.version>
+        <jackson.databind.version>2.13.5</jackson.databind.version>
         <jackson.annotations.version>${jackson.databind.version}</jackson.annotations.version>
         <jakarta.mail.version>1.6.5</jakarta.mail.version>
         <jboss-jaxrs-api_2.1_spec>2.0.1.Final</jboss-jaxrs-api_2.1_spec>
@@ -111,7 +111,7 @@
         <sun.activation.version>1.2.2</sun.activation.version>
         <org.glassfish.jaxb.xsom.version>2.3.3-b02</org.glassfish.jaxb.xsom.version>
         <undertow.version>2.2.14.Final</undertow.version>
-        <elytron.version>1.18.3.Final</elytron.version>
+        <elytron.version>1.19.1.Final</elytron.version>
         <elytron.undertow-server.version>1.9.0.Final</elytron.undertow-server.version>
         <jetty92.version>9.2.4.v20141103</jetty92.version>
         <jetty93.version>9.3.29.v20201019</jetty93.version>
@@ -913,7 +913,7 @@
                 <artifactId>infinispan-server-core</artifactId>
                 <version>${infinispan.version}</version>
             </dependency>
-            <dependency>
+            <dependency> 
                 <groupId>org.infinispan</groupId>
                 <artifactId>infinispan-server-router</artifactId>
                 <version>${infinispan.version}</version>
@@ -938,6 +938,12 @@
                 <groupId>org.infinispan</groupId>
                 <artifactId>infinispan-client-hotrod</artifactId>
                 <version>${infinispan.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.wildfly.security</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.infinispan</groupId>
@@ -1733,9 +1739,114 @@
 
             <!-- overrides -->
             <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>1.4.20</version>
+            </dependency>
+            <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec-http</artifactId>
                 <version>4.1.82.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-codec-haproxy</artifactId>
+                <version>4.1.87.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-parameter-names</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.sshd</groupId>
+                <artifactId>sshd-common</artifactId>
+                <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>1.15.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-elytron-base</artifactId>
+                <version>${elytron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-elytron-client</artifactId>
+                <version>${elytron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-elytron-security</artifactId>
+                <version>${elytron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-elytron-security-manager</artifactId>
+                <version>${elytron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-elytron-security-manager-action</artifactId>
+                <version>${elytron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-elytron-security-permission</artifactId>
+                <version>${elytron.version}</version>
+            </dependency>
+             <dependency>
+                 <groupId>org.wildfly.security</groupId>
+                 <artifactId>wildfly-elytron-sasl-digest</artifactId>
+                 <version>${elytron.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.wildfly.security</groupId>
+                 <artifactId>wildfly-elytron-sasl-external</artifactId>
+                 <version>${elytron.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.wildfly.security</groupId>
+                 <artifactId>wildfly-elytron-sasl-gs2</artifactId>
+                 <version>${elytron.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.wildfly.security</groupId>
+                 <artifactId>wildfly-elytron-sasl-gssapi</artifactId>
+                 <version>${elytron.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.wildfly.security</groupId>
+                 <artifactId>wildfly-elytron-sasl-oauth2</artifactId>
+                 <version>${elytron.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.wildfly.security</groupId>
+                 <artifactId>wildfly-elytron-sasl-plain</artifactId>
+                 <version>${elytron.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.wildfly.security</groupId>
+                 <artifactId>wildfly-elytron-sasl-scram</artifactId>
+                 <version>${elytron.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.wildfly.security</groupId>
+                 <artifactId>wildfly-elytron-password-impl</artifactId>
+                 <version>${elytron.version}</version>
+             </dependency>
+             <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>1.33</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
