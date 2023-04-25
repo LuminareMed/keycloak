@@ -119,7 +119,6 @@ public class OIDCAttributeMapperHelper {
         tmpToken.put("typ", notAllowedInToken);
         tmpToken.put("iat", notAllowedInToken);
         tmpToken.put("exp", notAllowedInToken);
-        tmpToken.put("iss", notAllowedInToken);
         tmpToken.put("scope", notAllowedInToken);
         tmpToken.put(IDToken.NONCE, notAllowedInToken);
         tmpToken.put(IDToken.AUTH_TIME, notAllowedInToken);
