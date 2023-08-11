@@ -31,6 +31,9 @@ COPY --from=ubi-micro-build --chown=1000:0 /opt/keycloak /opt/keycloak
 RUN echo "keycloak:x:0:root" >> /etc/group && \
     echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd
 
+# we need to enable SHA1 for lots of stuff, including Azure Flexible PostgreSQL
+COPY ./java.config /etc/crypto-policies/back-ends/java.config
+
 USER 1000
 
 EXPOSE 8080
